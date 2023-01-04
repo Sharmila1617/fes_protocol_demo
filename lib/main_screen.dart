@@ -1,17 +1,45 @@
 import 'package:fes_protocol_demo/nav_bar.dart';
 import 'package:flutter/material.dart';
 
+
 class MainScreen extends StatelessWidget {
   MainScreen({super.key});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: NavBar(),
-      body: ListTile(
-          leading: Icon(Icons.settings),
-          title: const Text('info'),
+    return Drawer(
+        child: ListView(padding: EdgeInsets.zero, children: [
+      UserAccountsDrawerHeader(
+        accountName: const Text(
+          'FES Protocol Demo',
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+        accountEmail: const Text(
+          'Version: 01.00.00.9995',
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+        currentAccountPicture: CircleAvatar(
+          child: ClipOval(
+            child: Image.asset(
+              'images/fes_logo.png',
+              width: 90,
+              height: 90,
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+      ),
+      ListTile(title: const Text('Home'), onTap: () {
+      }),
+      ListTile(title: const Text('Settings'), onTap: () {}),
+      ListTile(title: const Text('Data Table'), onTap: () {}),
+      ListTile(
+          title: const Text('Info'),
           onTap: () {
             showDialog(
                 context: context,
@@ -58,11 +86,29 @@ class MainScreen extends StatelessWidget {
                                 thickness: 1,
                                 color: Colors.grey,
                               ),
+                              Row(
+                                children: [
+                                  Image.asset(
+                                    'images/fes_logo.png',
+                                    width: 60,
+                                    height: 60,
+                                    fit: BoxFit.cover,
+                                  ),
+                                  Text(
+                                    'Future Embdded Solution',
+                                    style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: 25.0, width: 250.0),
                               const Text(
                                 'FES Protocol Demo',
                                 style: TextStyle(
                                     fontSize: 15, fontWeight: FontWeight.bold),
                               ),
+                              SizedBox(height: 25.0, width: 250.0),
                               Row(
                                 children: const [
                                   Text(
@@ -73,6 +119,7 @@ class MainScreen extends StatelessWidget {
                               SizedBox(
                                 height: 10,
                               ),
+                              SizedBox(height: 25.0, width: 250.0),
                               Row(
                                 children: const [
                                   Text(
@@ -98,6 +145,7 @@ class MainScreen extends StatelessWidget {
                               SizedBox(
                                 height: 10,
                               ),
+                              SizedBox(height: 25.0, width: 250.0),
                               Row(
                                 children: const [
                                   Text(
@@ -119,6 +167,7 @@ class MainScreen extends StatelessWidget {
                                   )
                                 ],
                               ),
+                              SizedBox(height: 25.0, width: 250.0),
                               Row(
                                 children: const [
                                   Text(
@@ -131,6 +180,7 @@ class MainScreen extends StatelessWidget {
                                   )
                                 ],
                               ),
+                              SizedBox(height: 25.0, width: 250.0),
                               Divider(
                                 thickness: 1,
                                 color: Colors.grey,
@@ -138,9 +188,25 @@ class MainScreen extends StatelessWidget {
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
-                                children: const [
-                                  Text('versionn'),
-                                  Text('close')
+                                children: [
+                                  Text('Version: 01.00.00.9995'),
+                                  GestureDetector(
+                                    onTap: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: TextButton(
+                                      child: Text(
+                                        'Close',
+                                        style: TextStyle(
+                                            fontSize: 25,
+                                            color: Colors.white,
+                                            backgroundColor: Colors.grey),
+                                      ),
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                    ),
+                                  )
                                 ],
                               )
                             ],
@@ -151,6 +217,6 @@ class MainScreen extends StatelessWidget {
                   });
                 });
           }),
-    );
+    ]));
   }
 }
